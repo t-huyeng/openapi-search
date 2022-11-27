@@ -1,6 +1,6 @@
 <script setup>
 useHead({
-  title: 'Vitesse Nuxt 3',
+  title: 'OpenAPI Finder',
   link: [
     {
       rel: 'icon', type: 'image/png', href: '/nuxt.png',
@@ -16,14 +16,16 @@ useHead({
 </template>
 
 <style>
-html, body , #__nuxt{
+html,
+body,
+#__nuxt {
   height: 100vh;
   margin: 0;
   padding: 0;
 }
 
 html.dark {
-  background: #222;
+  background: rgb(21, 20, 20);
   color: white;
 }
 </style>
