@@ -1,4 +1,8 @@
 export default defineNuxtConfig({
+  target: 'static',
+  router: {
+    base: '/openapi-search/',
+  },
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',
