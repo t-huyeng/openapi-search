@@ -27,7 +27,7 @@ jobs:
         run: yarn
 
       - name: Generate
-        run: npm generate
+        run: npm run generate
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
