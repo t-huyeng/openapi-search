@@ -1,10 +1,12 @@
 <template>
     <div flex justify-center>
 
-        <div border="~ rounded gray-200 dark:gray-700" outline="none active:none" m="b-4" justify-center w-screen-sm>
+        <div border="~ rounded gray-200 dark:gray-700" outline="none active:none" m="b-4" justify-center w-screen-sm
+            hover-bg-blend-overlay bg-opacity-80
+            v-bind:class="getScore == 'Match' ? 'bg-green-900 hover-bg-green-900' : 'hover-bg-gray-800'">
             <!-- show fuse score of result -->
-            <div text-s text-gray:50>
-                {{ result.score }}
+            <div text-s text-right m-r-2 v-bind:class="getScore == 'Match' ? 'text-green:80' : 'text-gray:50'">
+                {{ getScore }}
             </div>
             <!-- show server urls -->
             <div text="xs gray4">
@@ -12,7 +14,7 @@
             </div>
             <template v-for="server in result.item.serverURLs">
                 <div text="xs gray4" m-1 flex justify-center gap-3>
-                    - {{ server }}
+                    <template v-if="result.item.serverURLs.length > 1">-</template>{{ server }}
                 </div>
             </template>
             <div class="result__title">
@@ -26,7 +28,7 @@
 
             </div>
             <div class="result__description">
-                <p class="text-sm text-gray:80">{{ result.item.description }}</p>
+                <p class="text-sm text-gray:90" font-italic>{{ result.item.description }}</p>
             </div>
         </div>
     </div>
@@ -50,7 +52,22 @@ export interface Props {
         refIndex: number;
     }
 }
-defineProps<Props>()
+const props = defineProps<Props>()
+const color = ref('green-200')
+const getScore = computed(() => {
+    // if score is smaller 0.01 show "Match"
+    if (props.result.score < 0.005) {
+        return "Match"
+    }
+    // if score is smaller 0.1 show "Good Match"
+    if (props.result.score < 0.1) {
+        return "Good Match"
+    }
+    else {
+        return "Similar URL"
+    }
+})
+
 
 </script>
 
