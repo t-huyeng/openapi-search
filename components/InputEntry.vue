@@ -77,7 +77,6 @@ const go = () => {
     // remove trailing whitespaces
     let searchurl = url.value.trim()
     resultfuse = fuse.search(searchurl)
-    console.log(resultfuse)
     if (resultfuse.length > 0) {
       show.value = true
     } else {
