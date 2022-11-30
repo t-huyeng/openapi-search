@@ -3,9 +3,11 @@
 
         <div border="~ rounded gray-200 dark:gray-700" outline="none active:none" m="b-4" justify-center w-screen-sm
             hover-bg-blend-overlay bg-opacity-80
-            v-bind:class="getScore == 'Match' ? 'bg-green-900 hover-bg-green-900' : 'hover-bg-gray-800'">
-            <!-- show fuse score of result -->
-            <div text-s text-right m-r-2 v-bind:class="getScore == 'Match' ? 'text-green:80' : 'text-gray:50'">
+            v-bind:class="match ? 'bg-green-900 hover-bg-green-900' : 'hover-bg-gray-800'">
+            <div v-if="match" text-s text-right m-r-2 m-t-2 text-green:80>
+                <a i-carbon-checkmark-outline class="inline-block" />
+            </div>
+            <div v-else text-s text-right m-r-2 v-bind:class="match ? 'text-green:80' : 'text-gray:50'">
                 {{ getScore }}
             </div>
             <!-- show server urls -->
@@ -54,10 +56,12 @@ export interface Props {
 }
 const props = defineProps<Props>()
 const color = ref('green-200')
+const match = ref(false)
 const getScore = computed(() => {
-    // if score is smaller 0.01 show "Match"
+    // if score is smaller 0.005 show "Match"
     if (props.result.score < 0.005) {
-        return "Match"
+        match.value = true
+        return 'Match'
     }
     // if score is smaller 0.1 show "Good Match"
     if (props.result.score < 0.1) {
