@@ -15,7 +15,7 @@
             </div>
         </div>
         <div v-if="showHelp" m-5 justify-center font-oblique>
-            Have you just found an API and are not sure if it is already documented? <br />
+            Have you just found an API and you are not sure if it is already documented? <br />
             Just paste the server URL of the API into the input field and see if a result appears.
             If there are no result go ahead and create a new issue on the <a color-blue:400
                 href="https://github.com/bundesAPI/sofortmassnahmen/issues" hover-bg-gray7>GitHub repository</a>.

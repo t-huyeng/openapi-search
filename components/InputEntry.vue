@@ -7,8 +7,8 @@
         <input min-w-full ref="input" v-model="url" aria-label="Enter serverurl here.." w="80%"
           placeholder="Enter serverurl here.." type="text" autocomplete="off" p="x6 y4" bg-transparent border-none
           class="!outline-none" @keydown.enter="go" @input="go">
-        <button v-if="url" absolute flex right-2 w-10 top-2 bottom-2 text-xl op30 hover:op90 aria-label="Clear search"
-          @click="clear()">
+        <button v-if="url" absolute flex right-2 w-10 top-2 bottom-2 text-xl op90 hover:op90 hover:color-red
+          aria-label="Clear search" @click="clear()">
           <span i-carbon-close ma block aria-hidden="true" />
         </button>
       </div>
@@ -51,14 +51,14 @@ const { data } = await useFetch(() => `https://t-huyeng.github.io/bunddev-apis/`
 let resultfuse = ref({})
 let tags = ref(["server url", "name"])
 
-const options = {
+let options = {
   includeScore: true,
   minMatchCharLength: 3,
   threshold: 0.4,
   keys: ['serverURLs']
 }
 
-const fuse = new Fuse(data._rawValue, options)
+let fuse = new Fuse(data._rawValue, options)
 
 const clear = () => {
   url.value = ''
@@ -66,8 +66,13 @@ const clear = () => {
   resultfuse.value = {}
 }
 const random = () => {
-  url.value = data._rawValue[Math.floor(Math.random() * data._rawValue.length)].serverURLs[0]
-  go()
+  try {
+    url.value = data._rawValue[Math.floor(Math.random() * data._rawValue.length)].serverURLs[0]
+    go()
+  }
+  catch {
+    return
+  }
 }
 
 const go = () => {
