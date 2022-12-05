@@ -11,6 +11,9 @@ The fuzzy search will only check server URLs from the OpenAPI specification at t
 
 Go to [https://t-huyeng.github.io/openapi-search/](https://t-huyeng.github.io/openapi-search/) to try it out.
 
+![showcase.gif](docs/showcase.gif)
+
+
 ## List of OpenAPI specifications
 See: [https://t-huyeng.github.io/bunddev-apis/](https://t-huyeng.github.io/bunddev-apis/) for a list of all OpenAPI specifications from the BundDev project (including serverURLs).
 
